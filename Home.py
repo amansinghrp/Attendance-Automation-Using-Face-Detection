@@ -6,15 +6,15 @@ st.set_page_config(
 )
 
 st.write("# Welcome to the attendance automation using face detection system🧑‍💼")
-
-st.markdown(
+with st.container():
+    st.markdown(
+        """
+        This Project is created by:
+        
+            Aman Singh
+            III Semester
+            BTech CSE core
+            Graphic Era Deemed to be University
+            Dehradun
     """
-    This Project is created by:
-    
-        Aman Singh
-        III Semester
-        BTech CSE core
-        Graphic Era Deemed to be University
-        Dehradun
-"""
-)
+    )

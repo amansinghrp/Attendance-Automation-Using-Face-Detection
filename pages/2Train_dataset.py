@@ -10,30 +10,42 @@ st.set_page_config(
 
 st.title("Train your Dataset 👷")
 
+#`cv2.face.LBPHFaceRecognizer_create()` allows you to train it with a dataset of faces and later use it for face 
+#recognition tasks.
 recognizer = cv2.face.LBPHFaceRecognizer_create()
+
+#This classifier is then used for detecting faces in images or video frames.
 detector= cv2.CascadeClassifier("C:/Users/Lenovo/AppData/Local/Programs/Python/Python311/Lib/site-packages/cv2/data/haarcascade_frontalface_default.xml");
 
 def getImagesAndLabels(path):
     #get the path of all the files in the folder
     imagePaths=[os.path.join(path,f) for f in os.listdir(path)]
+    
     #create empth face list
     faceSamples=[]
+    
     #create empty ID list
     Ids=[]
     #now looping through all the image paths and loading the Ids and the images
     for imagePath in imagePaths:
         #loading the image and converting it to gray scale
+        #'L' module is the grayscale module
         pilImage=Image.open(imagePath).convert('L')
+        
         #Now we are converting the PIL image into numpy array
         imageNp=np.array(pilImage,'uint8')
+        
         #getting the Id from the image
         Id=int(os.path.split(imagePath)[-1].split(".")[1])
+        
         # extract the face from the training image sample
         faces=detector.detectMultiScale(imageNp)
+        
         #If a face is there then append that in the list as well as Id of it
         for (x,y,w,h) in faces:
             faceSamples.append(imageNp[y:y+h,x:x+w])
             Ids.append(Id)
+            
     return faceSamples,Ids
 
 options = ['None','Yes', 'No']
@@ -45,8 +57,13 @@ if choice == 'Yes':
     if os.path.exists(path):
         st.info("Training the data..")
         faces,Ids = getImagesAndLabels(path)
+        
+        #the model learns from the samples
         s = recognizer.train(faces, np.array(Ids))
-        recognizer.write('D:/Study\Coding/Projects/Mini Project/main/Trainer/trainer.yml')
+        
+        #save the face recognition model
+        recognizer.write('D:/Study/Coding/Projects/Mini Project/main/Trainer/trainer.yml')
+        
         st.success("Successfully trained")
     else:
         st.error("File not found at the specified path.")

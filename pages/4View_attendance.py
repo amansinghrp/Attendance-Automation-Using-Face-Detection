@@ -2,6 +2,11 @@ import streamlit as st
 import pandas as pd
 import os
 
+st.set_page_config(
+    page_title="View Records",
+    page_icon= "🔍",
+)
+st.title("Find previous records here 🔍")
 try:
     # Path to the folder where the attendance Excel files are stored
     attendance_folder = 'D:/Study/Coding/Projects/Mini Project/main/attendance/'
@@ -25,4 +30,7 @@ if os.path.exists(file_path) and os.path.getsize(file_path) > 0:
     df = pd.read_excel(file_path)
     st.write(df)
 else:
-    st.warning(f"The attendance sheet '{selected_file}' is either empty or does not exist.")
+    if(selected_file == 'None'):
+        st.info("Please Select a file")
+    else:
+        st.warning(f"The attendance sheet '{selected_file}' is either empty or does not exist.")

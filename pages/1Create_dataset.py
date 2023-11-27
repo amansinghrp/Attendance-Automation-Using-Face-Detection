@@ -1,8 +1,11 @@
 import cv2
 import os
 import streamlit as st
-
-st.title("Create Dataset")
+st.set_page_config(
+    page_title="Create Dataset",
+    page_icon= "🔨",
+)
+st.title("Create Dataset 🔨")
 
 def assure_path_exists(path):
     dir = os.path.dirname(path)

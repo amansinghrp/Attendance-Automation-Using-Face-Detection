@@ -3,8 +3,12 @@ import numpy as np
 from PIL import Image;
 import streamlit as st
 import time
+st.set_page_config(
+    page_title="Train Dataset",
+    page_icon= "👷",
+)
 
-st.title("Train your Dataset")
+st.title("Train your Dataset 👷")
 
 recognizer = cv2.face.LBPHFaceRecognizer_create()
 detector= cv2.CascadeClassifier("C:/Users/Lenovo/AppData/Local/Programs/Python/Python311/Lib/site-packages/cv2/data/haarcascade_frontalface_default.xml");

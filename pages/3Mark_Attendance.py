@@ -5,8 +5,12 @@ import streamlit as st
 import sys
 sys.path.append('D:\Study\Coding\Projects\Mini Project\main')
 import xlwrite
+st.set_page_config(
+    page_title="Mark Attendance",
+    page_icon= "📝",
+)
 
-st.title("Attendance Marking System")
+st.title("Attendance Marking System 📝")
 
 st.write("Recognising...")
 attendance_marked = False
@@ -25,6 +29,7 @@ dict = {
 }
 #font = cv2.InitFont(cv2.cv.CV_FONT_HERSHEY_SIMPLEX, 5, 1, 0, 1, 1)
 font = cv2.FONT_HERSHEY_SIMPLEX
+found = False
 while True:
     ret, img = cap.read()
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
@@ -38,12 +43,14 @@ while True:
         if (conf < 50):
             if (id == 1):
                 id = 'Aman'
+                found = True
                 if ((str(id)) not in dict):
                     filename = xlwrite.output('attendance', 'class1', 1, id, 'yes')
                     dict[str(id)] = str(id)
                     attendance_marked = True
             if (id == 2):
                 id = 'Elon Musk'
+                found = True
                 if ((str(id)) not in dict):
                     filename = xlwrite.output('attendance', 'class1', 2, id, 'yes')
                     dict[str(id)] = str(id)
@@ -69,6 +76,8 @@ while True:
 if attendance_marked:
     st.success("Attendance Marked")
 else:
+    if(found == False):
+        st.warning("Mathch not found.")
     st.error("Attendance not marked")
 cap.release()
 cv2.destroyAllWindows()

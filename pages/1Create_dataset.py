@@ -3,9 +3,9 @@ import os
 import streamlit as st
 st.set_page_config(
     page_title="Create Dataset",
-    page_icon= "🔨",
+    page_icon= "📷",
 )
-st.title("Create Dataset 🔨")
+st.title("Create Dataset 📷")
 
 def assure_path_exists(path):
     dir = os.path.dirname(path)

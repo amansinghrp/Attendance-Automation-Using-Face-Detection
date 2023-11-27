@@ -9,7 +9,12 @@ st.write("# Welcome to the attendance automation using face detection system👋
 
 st.markdown(
     """
-    This page is created by:
-    Aman Singh
+    This Project is created by:
+    
+        Aman Singh
+        III Semester
+        BTech CSE core
+        Graphic Era Deemed to be University
+        Dehradun
 """
 )

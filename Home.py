@@ -5,7 +5,7 @@ st.set_page_config(
     page_icon= "🧑‍💼",
 )
 
-st.write("# Welcome to the attendance automation using face detection system🧑‍💼")
+st.write("# 🧑‍💼Welcome to the attendance automation using face detection system")
 with st.container():
     st.info(
         """

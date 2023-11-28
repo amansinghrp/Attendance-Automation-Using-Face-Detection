@@ -9,13 +9,14 @@ def output(filename, sheet,num, name, present):
     my_file = Path(r'D:/Study/Coding/Projects/Mini Project/main/attendance/'+filename+str(datetime.now().date())+'.xls')
     if my_file.is_file():
         rb = open_workbook(r'D:/Study/Coding/Projects/Mini Project/main/attendance/'+filename+str(datetime.now().date())+'.xls')
+        #create a copy of the retreived workbook to update the attendance so that original is not affected
         book = copy(rb)
-        sh = book.get_sheet(0)
+        sh = book.get_sheet(0)#get the first sheet
         # file exists
     else:
         book = xlwt.Workbook()
         sh = book.add_sheet(sheet)
-    style0 = xlwt.easyxf('font: name Times New Roman, color-index red, bold on',
+    style0 = xlwt.easyxf('font: name Times New Roman, color-index blue, bold on',
                          num_format_str='#,##0.00')
     style1 = xlwt.easyxf(num_format_str='D-MMM-YY')
 

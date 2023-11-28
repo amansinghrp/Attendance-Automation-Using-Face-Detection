@@ -13,7 +13,10 @@ def assure_path_exists(path):
     dir = os.path.dirname(path)
     if not os.path.exists(dir):
         os.makedirs(dir)
+        
+#use steramlit to make a toggle button to start capturing
 activated = st.toggle("Start Capturing")
+
 if activated:
     #taking user id input
     face_id = st.text_input("Enter your ID:")
@@ -24,9 +27,10 @@ if activated:
 
     # Detect object in video stream using Haarcascade Frontal Face
     #cv2.CascadeClassifier initialises the cascade classifier object in openCV
+    #argument specifies th epath to the XML file containing the pre trained model for detecting frontal faces
     face_detector = cv2.CascadeClassifier('C:/Users/Lenovo/AppData/Local/Programs/Python/Python311/Lib/site-packages/cv2/data/haarcascade_frontalface_default.xml')
 
-    # Initialize sample face image
+    # Initialize counter fo the count of samples collected
     count = 0
 
     #verify that the given path exists, else creatte the needed folder

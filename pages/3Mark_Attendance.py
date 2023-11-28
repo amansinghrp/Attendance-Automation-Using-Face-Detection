@@ -18,6 +18,7 @@ period = 8
 detector = cv2.CascadeClassifier('C:/Users/Lenovo/AppData/Local/Programs/Python/Python311/Lib/site-packages/cv2/data/haarcascade_frontalface_default.xml')
 
 activated = st.toggle("Start attendance marking system")
+
 if activated:    
     cap = cv2.VideoCapture(0)
 
@@ -68,8 +69,7 @@ if activated:
                 #match corresponding ids
                 if (id == 1):
                     id = 'Aman'
-                    found = True
-                    
+                    found = True                    
                     #check if attendance is not already marked
                     if ((str(id)) not in dict):
                         filename = xlwrite.output('attendance', 'class1', 1, id, 'yes')
@@ -77,8 +77,7 @@ if activated:
                         attendance_marked = True
                 if (id == 2):
                     id = 'Elon Musk'
-                    found = True
-                    
+                    found = True                    
                     #check if attendance is not already marked
                     if ((str(id)) not in dict):
                         filename = xlwrite.output('attendance', 'class1', 2, id, 'yes')

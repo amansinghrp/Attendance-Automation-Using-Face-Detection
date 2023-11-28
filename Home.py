@@ -7,7 +7,7 @@ st.set_page_config(
 
 st.write("# Welcome to the attendance automation using face detection system🧑‍💼")
 with st.container():
-    st.markdown(
+    st.info(
         """
         This Project is created by:
         

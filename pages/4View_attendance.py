@@ -11,14 +11,14 @@ try:
     # Path to the folder where the attendance Excel files are stored
     attendance_folder = 'D:/Study/Coding/Projects/Mini Project/main/attendance/'
 except Exception as e:
-    print(e)
+    st.info(e)
       
 try:
     # Get a list of all Excel files in the attendance folder
     files = os.listdir(attendance_folder)
     excel_files = ["None"]+[file    for file in files   if file.endswith('.xls')]
 except Exception as e:
-    print(e)
+    st.info(e)
     
 # Let the user select the file to display
 selected_file = st.selectbox('Select attendance sheet', excel_files)

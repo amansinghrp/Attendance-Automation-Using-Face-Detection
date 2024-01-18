@@ -70,7 +70,7 @@ if activated:
         if cv2.waitKey(100) & 0xFF == ord('q'):
             break
 
-        # If image taken reach 100, stop taking video
+        # If image taken reach 50, stop taking video
         elif count >= 50:
             st.success("Successfully Captured")
             break

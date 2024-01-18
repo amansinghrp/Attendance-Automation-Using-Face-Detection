@@ -5,6 +5,7 @@ import streamlit as st
 import sys
 sys.path.append('D:\Study\Coding\Projects\Mini Project\main')
 import xlwrite
+import matplotlib.pyplot as plt
 
 st.set_page_config(
     page_title="Mark Attendance",
@@ -36,6 +37,7 @@ if activated:
     font = cv2.FONT_HERSHEY_SIMPLEX
     found = False
     st.info("Recognising...")
+    confidenceScores = [] # for storing the  confidence scores 
     while True:
         
         #read a frame from the video
@@ -63,11 +65,13 @@ if activated:
             
             #get the id and the confidence value for the given roi_gray frame by matching it with the trained data
             #lower value of confidence indicates higher confidence
-            id, confidence = recognizer.predict(roi_gray)                      
+            id, confidence = recognizer.predict(roi_gray)   
+            
+            confidenceScores.append(confidence) #append this confidence to the list                   
             #check if confidence is high
             if (confidence < 50):
                 #match corresponding ids
-                if (id == 1):
+                if(id == 1):
                     id = 'Aman'
                     found = True                    
                     #check if attendance is not already marked
@@ -75,8 +79,16 @@ if activated:
                         filename = xlwrite.output('attendance', 'class1', 1, id, 'yes')
                         dict[str(id)] = str(id)
                         attendance_marked = True
-                if (id == 2):
+                elif(id == 2):
                     id = 'Elon Musk'
+                    found = True                    
+                    #check if attendance is not already marked
+                    if ((str(id)) not in dict):
+                        filename = xlwrite.output('attendance', 'class1', 2, id, 'yes')
+                        dict[str(id)] = str(id)
+                        attendance_marked = True
+                elif(id == 3):
+                    id = 'Keerat Rekhi'
                     found = True                    
                     #check if attendance is not already marked
                     if ((str(id)) not in dict):
@@ -111,5 +123,12 @@ if activated:
         st.error("Attendance not marked")
     cap.release()
     cv2.destroyAllWindows()
+    st.title("Face Recognition Confidence Plot")
+    st.set_option('deprecation.showPyplotGlobalUse', False)
+    plt.plot(confidenceScores, marker='o', linestyle='-')
+    plt.xlabel('Face')
+    plt.ylabel('Confidence Score')
+    plt.title('Face Recognition Confidence')
+    st.pyplot()
 else:
     st.info("Attendace marking system is off")

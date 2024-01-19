@@ -79,8 +79,6 @@ if activated:
                         filename = xlwrite.output('attendance', 'class1', 1, id, 'yes')
                         dict[str(id)] = str(id)
                         attendance_marked = True
-                    else:
-                        st.info("Attendance already marked")
                 elif(id == 2):
                     id = 'Elon Musk'
                     found = True                    

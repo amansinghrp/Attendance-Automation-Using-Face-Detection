@@ -69,7 +69,7 @@ if activated:
             
             confidenceScores.append(confidence) #append this confidence to the list                   
             #check if confidence is high
-            if (confidence < 50):
+            if (confidence < 70):
                 #match corresponding ids
                 if(id == 1):
                     id = 'Aman'
@@ -79,6 +79,8 @@ if activated:
                         filename = xlwrite.output('attendance', 'class1', 1, id, 'yes')
                         dict[str(id)] = str(id)
                         attendance_marked = True
+                    else:
+                        st.info("Attendance already marked")
                 elif(id == 2):
                     id = 'Elon Musk'
                     found = True                    
@@ -92,7 +94,7 @@ if activated:
                     found = True                    
                     #check if attendance is not already marked
                     if ((str(id)) not in dict):
-                        filename = xlwrite.output('attendance', 'class1', 2, id, 'yes')
+                        filename = xlwrite.output('attendance', 'class1', 3, id, 'yes')
                         dict[str(id)] = str(id)
                         attendance_marked = True
 

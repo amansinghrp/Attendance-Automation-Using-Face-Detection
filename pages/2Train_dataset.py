@@ -15,7 +15,7 @@ st.title("Train your Dataset 👷")
 recognizer = cv2.face.LBPHFaceRecognizer_create()
 
 #This classifier is then used for detecting faces in images or video frames.
-detector= cv2.CascadeClassifier("C:/Users/Lenovo/AppData/Local/Programs/Python/Python311/Lib/site-packages/cv2/data/haarcascade_frontalface_default.xml");
+detector= cv2.CascadeClassifier("C:/Users/Lenovo/AppData/Local/Programs/Python/Python311/Lib/site-packages/cv2/data/haarcascade_frontalface_default.xml")
 
 def getImagesAndLabels(path):
     #get the path of all the files in the folder

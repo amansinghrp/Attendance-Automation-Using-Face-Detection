@@ -13,13 +13,14 @@ def assure_path_exists(path):
     dir = os.path.dirname(path)
     if not os.path.exists(dir):
         os.makedirs(dir)
-        
+
+#taking user id input
+face_id = st.text_input("Enter your ID:")      
 #use steramlit to make a toggle button to start capturing
 activated = st.toggle("Start Capturing")
 
 if activated:
-    #taking user id input
-    face_id = st.text_input("Enter your ID:")
+    
 
     # Start capturing video
     vid_cam = cv2.VideoCapture(0)
